@@ -49,16 +49,10 @@ Link to Discord: https://discord.com/invite/sW262YSJkr
 ### Git workflow
 1. Fork the repository.
 2. Set up the remote upstream `git remote add upstream https://github.com/sw21-tug/Team_30.git`
-3. Always pull from the upstream before you start with a new branch `git pull upstream main`
+3. Always pull from the upstream before you start with a new branch `git pull upstream develop`
 4. Checkout your current feature branch on the forked repository `git checkout -b SR-XXX`
 5. Commit your changes and stick to the commiting convention `git commit -m "SR-XXX <short description>"`
 
    If you worked in pair programming, don't forget to add your initials! Your initials must be in alphabetical order depending on your first name like in the following example: `git commit -m "SR-XXX <short description> [SJ,DM]"` where SJ stands for Jim SMITH and DM for Mary DOE
    
 6. Push your changes to your feature branch and create a pull-request.
-
-
-## Implemented features
-| Ticket #     | Feature name| 
-| :---         |    :----:   |
-| SR-000       |    Feature  |
