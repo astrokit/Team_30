@@ -49,7 +49,7 @@ Link to Discord: https://discord.com/invite/sW262YSJkr
 ### Git workflow
 1. Fork the repository.
 2. Set up the remote upstream `git remote add upstream https://github.com/sw21-tug/Team_30.git`
-3. Always pull from the upstream before you start with a new branch `git pull upstream main`
+3. Always pull from the upstream before you start with a new branch `git pull upstream develop`
 4. Checkout your current feature branch on the forked repository `git checkout -b SR-XXX`
 5. Commit your changes and stick to the commiting convention `git commit -m "SR-XXX <short description>"`
 
@@ -59,6 +59,13 @@ Link to Discord: https://discord.com/invite/sW262YSJkr
 
 
 ## Implemented features
-| Ticket #     | Feature name| 
-| :---         |    :----:   |
-| SR-000       |    Feature  |
+| Ticket #    |              Feature name             | 
+| :---        |    :-----------------------------:    |
+| SR-014      |            Initial app setup          |
+| SR-007      |   Location usage confirmation pop-up  |
+| SR-009      |    Main view: List of routes          |
+| SR-015      |           Button navigation           |
+| SR-010      |           Route description           |
+| SR-020      |          Generating Demo Data         |
+| SR-022      |           City Map button             |
+| SR-024      |      Location usage allowed (Map)     |
