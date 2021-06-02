@@ -9,18 +9,21 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import at.team30.setroute.Helper.RouteIconHelper
 import at.team30.setroute.R
 import at.team30.setroute.infrastructure.IRoutesRepository
+import at.team30.setroute.models.Route
 import at.team30.setroute.ui.route_detail.RouteDetailViewModel
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -30,7 +33,7 @@ import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class MapsFragment : Fragment(), GoogleMap.OnMyLocationButtonClickListener {
+class MapsFragment : Fragment(), GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMarkerClickListener {
 
     private val viewModel: MapsViewModel by viewModels()
     private lateinit var mMap: GoogleMap;
@@ -60,6 +63,7 @@ class MapsFragment : Fragment(), GoogleMap.OnMyLocationButtonClickListener {
     }
 
     private fun initRouteMarkers() {
+        mMap.setOnMarkerClickListener(this)
         for (route in viewModel.getRoutes()) {
             if (route.positions == null || route.positions.isEmpty()) {
                 continue
@@ -70,19 +74,6 @@ class MapsFragment : Fragment(), GoogleMap.OnMyLocationButtonClickListener {
             )
             marker.tag = route
         }
-
-//                        ......
-//                    }
-//
-//                    @Override
-//                    public boolean onMarkerClick(final Marker marker) {
-//
-//                        if (marker.equals(myMarker))
-//                        {
-//                            //handle click here
-//                        }
-//                    }
-//                }
     }
 
     @SuppressLint("MissingPermission")
@@ -146,5 +137,10 @@ class MapsFragment : Fragment(), GoogleMap.OnMyLocationButtonClickListener {
         if(::locationCallback.isInitialized) {
             fusedLocationClient.removeLocationUpdates(locationCallback)
         }
+    }
+
+    override fun onMarkerClick(marker: Marker) : Boolean {
+        Toast.makeText(requireContext(), (marker.tag as Route).name, Toast.LENGTH_LONG).show()
+        return true
     }
 }
