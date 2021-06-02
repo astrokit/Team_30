@@ -44,4 +44,5 @@
     </string-array>
     <string name="duration">Dauer:</string>
     <string name="distance">Distanz:</string>
+    <string name="show_detail">Show detail</string>
 </resources>

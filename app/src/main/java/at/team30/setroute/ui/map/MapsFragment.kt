@@ -9,15 +9,15 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment.findNavController
 import at.team30.setroute.Helper.RouteIconHelper
 import at.team30.setroute.R
-import at.team30.setroute.infrastructure.IRoutesRepository
 import at.team30.setroute.models.Route
-import at.team30.setroute.ui.route_detail.RouteDetailViewModel
+import at.team30.setroute.ui.routes.RouteListFragmentDirections
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -26,11 +26,8 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.zeugmasolutions.localehelper.LocaleAwareCompatActivity
 import com.zeugmasolutions.localehelper.LocaleHelper
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.*
-import javax.inject.Inject
 
 
 /// Source: https://medium.com/@paultr/google-maps-for-android-pt-2-user-location-f7416966aa67
@@ -153,6 +150,11 @@ class MapsFragment : Fragment(), GoogleMap.OnMyLocationButtonClickListener, Goog
                 .setIcon(RouteIconHelper.getRouteTypeIconIdentifier(route.type))
                 .setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
                     dialog.dismiss()
+                }
+                .setPositiveButton(getString(R.string.show_detail)) { dialog, _ ->
+                    dialog.dismiss()
+                    val action = MapsFragmentDirections.actionMapsFragmentToRouteDetailFragment(route.id)
+                    Navigation.findNavController(requireView()).navigate(action)
                 }
                 .create().show()
         return true
