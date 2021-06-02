@@ -25,7 +25,11 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.zeugmasolutions.localehelper.LocaleAwareCompatActivity
+import com.zeugmasolutions.localehelper.LocaleHelper
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 import javax.inject.Inject
 
 
@@ -140,7 +144,17 @@ class MapsFragment : Fragment(), GoogleMap.OnMyLocationButtonClickListener, Goog
     }
 
     override fun onMarkerClick(marker: Marker) : Boolean {
-        Toast.makeText(requireContext(), (marker.tag as Route).name, Toast.LENGTH_LONG).show()
+        var route = marker.tag as Route
+        val locale = LocaleHelper.getLocale(requireContext())
+
+        MaterialAlertDialogBuilder(requireContext())
+                .setMessage(route.getLocalizedDescription(locale.language))
+                .setTitle(route.getLocalizedName(locale.language))
+                .setIcon(RouteIconHelper.getRouteTypeIconIdentifier(route.type))
+                .setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .create().show()
         return true
     }
 }
