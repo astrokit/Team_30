@@ -1,4 +1,4 @@
-package at.team30.setroute.ui
+package at.team30.setroute.ui.map
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -11,17 +11,32 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment.findNavController
+import at.team30.setroute.Helper.RouteIconHelper
 import at.team30.setroute.R
+import at.team30.setroute.models.Route
+import at.team30.setroute.ui.routes.RouteListFragmentDirections
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
+import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.zeugmasolutions.localehelper.LocaleHelper
+import dagger.hilt.android.AndroidEntryPoint
 
 
 /// Source: https://medium.com/@paultr/google-maps-for-android-pt-2-user-location-f7416966aa67
-class MapsFragment : Fragment(), GoogleMap.OnMyLocationButtonClickListener {
 
+
+@AndroidEntryPoint
+class MapsFragment : Fragment(), GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMarkerClickListener {
+
+    private val viewModel: MapsViewModel by viewModels()
     private lateinit var mMap: GoogleMap;
     private lateinit var locationCallback: LocationCallback
     private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -48,11 +63,28 @@ class MapsFragment : Fragment(), GoogleMap.OnMyLocationButtonClickListener {
         }
     }
 
+    private fun initRouteMarkers() {
+        mMap.setOnMarkerClickListener(this)
+        for (route in viewModel.getRoutes()) {
+            if (route.positions == null || route.positions.isEmpty()) {
+                continue
+            }
+            var marker = mMap.addMarker(MarkerOptions()
+                    .position(route.positions.first())
+            )
+            marker.tag = route
+            marker.setIcon(RouteIconHelper.getRouteIconBitMap(route.type, resources))
+        }
+    }
+
     @SuppressLint("MissingPermission")
     private fun initMap() {
         mMap.isMyLocationEnabled = true
         initLocationTracking()
+        initRouteMarkers()
     }
+
+
 
     @SuppressLint("MissingPermission")
     private fun initLocationTracking() {
@@ -106,5 +138,25 @@ class MapsFragment : Fragment(), GoogleMap.OnMyLocationButtonClickListener {
         if(::locationCallback.isInitialized) {
             fusedLocationClient.removeLocationUpdates(locationCallback)
         }
+    }
+
+    override fun onMarkerClick(marker: Marker) : Boolean {
+        var route = marker.tag as Route
+        val locale = LocaleHelper.getLocale(requireContext())
+
+        MaterialAlertDialogBuilder(requireContext())
+                .setMessage(route.getLocalizedDescription(locale.language))
+                .setTitle(route.getLocalizedName(locale.language))
+                .setIcon(RouteIconHelper.getRouteTypeIconIdentifier(route.type))
+                .setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .setPositiveButton(getString(R.string.show_detail)) { dialog, _ ->
+                    dialog.dismiss()
+                    val action = MapsFragmentDirections.actionMapsFragmentToRouteDetailFragment(route.id)
+                    Navigation.findNavController(requireView()).navigate(action)
+                }
+                .create().show()
+        return true
     }
 }

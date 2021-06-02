@@ -26,10 +26,15 @@
 
     <fragment
         android:id="@+id/mapsFragment"
-        android:name="at.team30.setroute.ui.MapsFragment"
+        android:name="at.team30.setroute.ui.map.MapsFragment"
         android:label="fragment_maps"
-        tools:layout="@layout/fragment_maps" />
-        tools:layout="@layout/fragment_route_list"/>
+        tools:layout="@layout/fragment_maps">
+        <action
+            android:id="@+id/action_mapsFragment_to_routeDetailFragment"
+            app:destination="@id/routeDetailFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:launchSingleTop="false" />
+    </fragment>
     <fragment
         android:id="@+id/routeDetailFragment"
         android:name="at.team30.setroute.ui.route_detail.RouteDetailFragment"
