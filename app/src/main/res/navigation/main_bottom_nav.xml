@@ -26,7 +26,7 @@
 
     <fragment
         android:id="@+id/mapsFragment"
-        android:name="at.team30.setroute.ui.MapsFragment"
+        android:name="at.team30.setroute.ui.map.MapsFragment"
         android:label="fragment_maps"
         tools:layout="@layout/fragment_maps" />
         tools:layout="@layout/fragment_route_list"/>

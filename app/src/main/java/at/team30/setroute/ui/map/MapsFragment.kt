@@ -1,4 +1,4 @@
-package at.team30.setroute.ui
+package at.team30.setroute.ui.map
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -11,17 +11,28 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import at.team30.setroute.Helper.RouteIconHelper
 import at.team30.setroute.R
+import at.team30.setroute.infrastructure.IRoutesRepository
+import at.team30.setroute.ui.route_detail.RouteDetailViewModel
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 
 /// Source: https://medium.com/@paultr/google-maps-for-android-pt-2-user-location-f7416966aa67
+
+
+@AndroidEntryPoint
 class MapsFragment : Fragment(), GoogleMap.OnMyLocationButtonClickListener {
 
+    private val viewModel: MapsViewModel by viewModels()
     private lateinit var mMap: GoogleMap;
     private lateinit var locationCallback: LocationCallback
     private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -48,11 +59,40 @@ class MapsFragment : Fragment(), GoogleMap.OnMyLocationButtonClickListener {
         }
     }
 
+    private fun initRouteMarkers() {
+        for (route in viewModel.getRoutes()) {
+            if (route.positions == null || route.positions.isEmpty()) {
+                continue
+            }
+            var marker = mMap.addMarker(MarkerOptions()
+                    .position(route.positions.first())
+                    //.icon(RouteIconHelper.getRouteIconBitMap(route.type))
+            )
+            marker.tag = route
+        }
+
+//                        ......
+//                    }
+//
+//                    @Override
+//                    public boolean onMarkerClick(final Marker marker) {
+//
+//                        if (marker.equals(myMarker))
+//                        {
+//                            //handle click here
+//                        }
+//                    }
+//                }
+    }
+
     @SuppressLint("MissingPermission")
     private fun initMap() {
         mMap.isMyLocationEnabled = true
         initLocationTracking()
+        initRouteMarkers()
     }
+
+
 
     @SuppressLint("MissingPermission")
     private fun initLocationTracking() {
