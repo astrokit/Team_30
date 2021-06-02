@@ -27,8 +27,8 @@ class RouteListViewModel @Inject constructor(
     }
 
     fun getRoutes(): LiveData<List<Route>> {
-        routesList.postValue(getSortedRoutes(getFilteredRoutes())) // combination of sorting and filtering sometimes fucks up
-        return routesList                                          // but filtering and sorting on their own work as intended
+        routesList.postValue(getSortedRoutes(getFilteredRoutes()))
+        return routesList
     }
 
     fun getSortingOptions(): SortingOptions {
