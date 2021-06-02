@@ -1,5 +1,7 @@
 package at.team30.setroute.infrastructure
 
+import at.team30.setroute.Helper.EmailHelper
+import at.team30.setroute.Helper.IEmailHelper
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -32,5 +34,11 @@ object DependencyInjection {
     @Provides
     fun provideFilterRepository(): IFilterRepository {
         return FilteringRepository()
+    }
+
+    @Singleton
+    @Provides
+    fun provideEmailHelper(): IEmailHelper {
+        return EmailHelper()
     }
 }
