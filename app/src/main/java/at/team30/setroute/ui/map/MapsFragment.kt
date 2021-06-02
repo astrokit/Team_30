@@ -71,9 +71,9 @@ class MapsFragment : Fragment(), GoogleMap.OnMyLocationButtonClickListener, Goog
             }
             var marker = mMap.addMarker(MarkerOptions()
                     .position(route.positions.first())
-                    //.icon(RouteIconHelper.getRouteIconBitMap(route.type))
             )
             marker.tag = route
+            marker.setIcon(RouteIconHelper.getRouteIconBitMap(route.type, resources))
         }
     }
 
