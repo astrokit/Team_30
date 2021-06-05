@@ -45,4 +45,7 @@
     <string name="duration">Dauer:</string>
     <string name="distance">Distanz:</string>
     <string name="show_detail">Show detail</string>
+    <string name="interests">Interessen</string>
+    <string name="send_feedback">Sende uns dein Feedback</string>
+    <string name="no_routes">Keine Route scheint ensprint deinen Filterkriterien</string>
 </resources>

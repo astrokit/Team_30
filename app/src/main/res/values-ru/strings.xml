@@ -45,4 +45,7 @@
     <string name="duration">Длительность:</string>
     <string name="distance">Расстояние:</string>
     <string name="show_detail">Show detail</string>
+    <string name="interests">Интересы</string>
+    <string name="send_feedback">Отправьте нам свой отзыв</string>
+    <string name="no_routes">Похоже, что нет маршрутов, соответствующих вашему фильтру</string>
 </resources>

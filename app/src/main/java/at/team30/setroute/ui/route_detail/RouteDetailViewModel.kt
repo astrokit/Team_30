@@ -25,29 +25,8 @@ class RouteDetailViewModel @Inject constructor(
     private val imageRepository : IImageRepository
 ) : ViewModel() {
 
-    var routeId = 0;
-
-    /*
-    private val _image = MutableLiveData<Bitmap?>()
-    val image = _image as LiveData<Bitmap?>
-
-    init {
-        viewModelScope.launch(Dispatchers.IO) {
-                // Calling the repository is safe as it will move execution off
-                // the main thread
-                val user = imageRepository.getImage(1) = withContext(Dispatchers.IO);
-                _image.value = user
-
-        }
-    }
-
-
-     */
+    private var routeId = 0;
     private lateinit var image: LiveData<Bitmap?>
-   // = liveData {
-   //     val data = getImage(routeId) // loadUser is a suspend function.
-   //     emit(data)
-   // }
 
     fun getImageLiveData(): LiveData<Bitmap?> {
         if(!this::image.isInitialized)
@@ -75,5 +54,4 @@ class RouteDetailViewModel @Inject constructor(
     fun setId(routeIdSet: Int) {
         routeId = routeIdSet;
     }
-
 }

@@ -45,4 +45,7 @@
     <string name="duration">Duration:</string>
     <string name="distance">Distance:</string>
     <string name="show_detail">Show detail</string>
+    <string name="interests">Interests</string>
+    <string name="send_feedback">Send us your feedback</string>
+    <string name="no_routes">No routes seem to match you filter</string>
 </resources>

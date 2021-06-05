@@ -10,9 +10,9 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.core.app.ActivityCompat.recreate
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import at.team30.setroute.Helper.EmailHelper
 import at.team30.setroute.Helper.IEmailHelper
 import at.team30.setroute.R
 import at.team30.setroute.models.Language
@@ -53,15 +53,9 @@ class SettingsFragment : Fragment() {
         dmSwitch.isChecked = sharedPreference?.getBoolean(DM_PREF_KEY, false) ?: false
         dmSwitch.setOnCheckedChangeListener { _, isChecked ->
             val editor = sharedPreference?.edit()
-            if (isChecked) {
-                editor?.putBoolean(DM_PREF_KEY, true)
-                editor?.commit()
-                recreate(requireActivity() as Activity)
-            } else {
-                editor?.putBoolean(DM_PREF_KEY, false)
-                editor?.commit()
-                recreate(requireActivity() as Activity)
-            }
+            editor?.putBoolean(DM_PREF_KEY, isChecked)
+            editor?.commit()
+            recreate(requireActivity() as Activity)
         }
 
         val distanceUnitSwitch = view.findViewById<SwitchMaterial>(R.id.switch_units)
@@ -72,11 +66,12 @@ class SettingsFragment : Fragment() {
             editor?.commit()
         }
 
-
         val sendFeedbackButton = view.findViewById(R.id.submit_feedback_button) as Button
         val feedbackTextView = view.findViewById(R.id.feedback_text_field) as EditText
 
-
+        feedbackTextView.doOnTextChanged { _, start, _, count ->
+            sendFeedbackButton.isEnabled = (start + count) in 1..500
+        }
         sendFeedbackButton.setOnClickListener() {
             val textFeedback = feedbackTextView.text.toString()
             viewModel.sendFeedback(textFeedback)
@@ -88,11 +83,7 @@ class SettingsFragment : Fragment() {
                     Toast.makeText(context, "Error sending feedback", Toast.LENGTH_LONG).show();
                 }
             })
-
-
         }
-
-
     }
 
     private fun languageDialog() {

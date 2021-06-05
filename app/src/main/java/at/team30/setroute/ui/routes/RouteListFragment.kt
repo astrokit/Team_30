@@ -6,6 +6,7 @@ import android.view.*
 import android.widget.ListView
 import android.widget.RadioGroup
 import android.widget.Spinner
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import at.team30.setroute.R
@@ -30,7 +31,6 @@ class RouteListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         viewModel.language = LocaleHelper.getLocale(requireContext()).language
         val view = inflater.inflate(R.layout.fragment_route_list, container, false)
         setHasOptionsMenu(true)
@@ -41,6 +41,8 @@ class RouteListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val listView: ListView = view.findViewById(R.id.list) as ListView
+        val emptyView: View = view.findViewById(R.id.empty) as TextView
+        listView.emptyView = emptyView
         viewModel.getRoutes().observe(viewLifecycleOwner, { routeList ->
             val adapter = RouteAdapter(
                 requireActivity(),
@@ -49,7 +51,6 @@ class RouteListFragment : Fragment() {
             listView.adapter = adapter
         })
     }
-
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.list_options, menu)
@@ -73,8 +74,6 @@ class RouteListFragment : Fragment() {
     }
 
     private fun sortingDialog() {
-
-
         val dialogView: View = this.layoutInflater.inflate(R.layout.sort_dialog, null)
         val orderRadioGroup = dialogView.findViewById<RadioGroup>(R.id.sort_order_group)
         val fieldSpinner = dialogView.findViewById<Spinner>(R.id.sort_field)
@@ -107,17 +106,15 @@ class RouteListFragment : Fragment() {
 
     private fun filteringDialog() {
         val dialogView: View = this.layoutInflater.inflate(R.layout.filter_dialog, null)
-
         val durationSlider: RangeSlider = dialogView.findViewById(R.id.duration_slider)
         val lengthSlider: RangeSlider = dialogView.findViewById(R.id.length_slider)
-
-        val interests = resources.getStringArray(R.array.filter_options)
-
         val fieldSpinner = dialogView.findViewById<Spinner>(R.id.filter_field)
 
+        val interests = resources.getStringArray(R.array.filter_options)
         val listInterests: ArrayList<Interest> = ArrayList()
         val spinnerTitle = Interest() // i couldn't think of anything else
-        spinnerTitle.setTitle("Interests")
+
+        spinnerTitle.setTitle(getString(R.string.interests))
         listInterests.add(spinnerTitle)
 
         val options = viewModel.getFilteringOptions()
@@ -126,17 +123,15 @@ class RouteListFragment : Fragment() {
         for ((counter, i) in interests.withIndex()) {
             val interest = Interest()
             interest.setTitle(i)
-            if (checkedBoxes.contains(counter + 1))
+            if (checkedBoxes.contains(counter + 1)) {
                 interest.setSelected(true)
+            }
             listInterests.add(interest)
         }
 
         durationSlider.setValues(options.minDuration, options.maxDuration)
-
         lengthSlider.setValues(options.minDistance, options.maxDistance)
-
         val myAdapter = FilterAdapter(this.requireContext(), 0, listInterests)
-
         fieldSpinner.adapter = myAdapter
 
         MaterialAlertDialogBuilder(requireContext())
