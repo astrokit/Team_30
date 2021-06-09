@@ -19,9 +19,10 @@ class RoutesRepositoryTest {
         assertEquals(60, sut.getRoutes().elementAt(1).duration)
         assertEquals(100, sut.getRoutes().elementAt(2).duration)
         assertEquals(12, sut.getRoutes().elementAt(3).duration)
-        assertEquals(12, sut.getRoutes().elementAt(4).duration)
-        assertEquals(40, sut.getRoutes().elementAt(5).duration)
-        assertEquals(30, sut.getRoutes().elementAt(6).duration)
+        assertEquals(100, sut.getRoutes().elementAt(4).duration)
+        assertEquals(25, sut.getRoutes().elementAt(5).duration)
+        assertEquals(11, sut.getRoutes().elementAt(6).duration)
+        assertEquals(40, sut.getRoutes().elementAt(7).duration)
     }
 
     @Test
