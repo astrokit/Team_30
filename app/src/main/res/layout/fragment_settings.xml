@@ -49,31 +49,47 @@
             android:textAppearance="?attr/textAppearanceBody1"
             android:text="@string/switch_to_dark_mode" />
 
+    <View android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="?android:attr/dividerVertical" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_margin="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_feedback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:text="@string/send_feedback"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/feedback_text_container"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:hint="@string/feedback"
             app:counterEnabled="true"
             app:counterMaxLength="500"
-            app:helperText="Send us your feedback"
             app:helperTextEnabled="true"
-            app:layout_constraintBottom_toTopOf="@+id/submit_feedback_button"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_feedback">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/feedback_text_field"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="?attr/feedbackTextColor"/>
+                android:paddingBottom="20dp"
+                android:lines="5"
+                android:gravity="top|left"
+                android:textColor="?attr/feedbackTextColor"
+                tools:ignore="RtlHardcoded" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -81,10 +97,10 @@
             android:id="@+id/submit_feedback_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:text="@string/submit_button"
             android:textAllCaps="false"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:enabled="false"
+            app:layout_constraintTop_toBottomOf="@id/feedback_text_container"
             app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

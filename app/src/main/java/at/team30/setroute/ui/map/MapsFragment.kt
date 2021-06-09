@@ -84,8 +84,6 @@ class MapsFragment : Fragment(), GoogleMap.OnMyLocationButtonClickListener, Goog
         initRouteMarkers()
     }
 
-
-
     @SuppressLint("MissingPermission")
     private fun initLocationTracking() {
         locationCallback = object : LocationCallback() {

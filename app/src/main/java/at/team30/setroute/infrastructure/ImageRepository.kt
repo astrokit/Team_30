@@ -20,9 +20,8 @@ class ImageRepository @Inject constructor( private val routesRepository : IRoute
     override suspend fun getImage(route_id : Int): Bitmap? {
         var image = map.get(route_id)
         val route = routesRepository.getRoutesById(route_id)
-        if(route != null && image == null)
-        {
-            var url = "https://maps.googleapis.com/maps/api/staticmap?size=600x400&key=" + apiKey + "&style=feature:all%7Cvisibility=off"
+        if(route != null && image == null) {
+            var url = "https://maps.googleapis.com/maps/api/staticmap?size=600x400&key=$apiKey&style=feature:all%7Cvisibility=off"
             var counter = 0
             if (route.positions != null) {
                 route.positions.forEach {
@@ -30,24 +29,17 @@ class ImageRepository @Inject constructor( private val routesRepository : IRoute
                 }
             }
 
-
-
             val request = Request.Builder().url(url).build()
-
             var response = client.newCall(request).execute()
 
-            if (!response.isSuccessful) throw IOException("Unexpected code $response")
-
-            for ((name, value) in response.headers) {
-                //Log.d("Response", "$name: $value")
+            if (!response.isSuccessful) {
+                throw IOException("Unexpected code $response")
             }
 
-             image = BitmapFactory.decodeStream(response.body!!.byteStream())
-
+            image = BitmapFactory.decodeStream(response.body!!.byteStream())
             map[route_id] = image!!
             return image
         }
-        else
-            return image
+        return image
     }
 }

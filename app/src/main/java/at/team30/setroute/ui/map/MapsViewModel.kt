@@ -8,8 +8,9 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class MapsViewModel @Inject constructor(private val routesRepository : IRoutesRepository)
-         : ViewModel() {
+class MapsViewModel @Inject constructor (
+    private val routesRepository : IRoutesRepository
+) : ViewModel() {
     fun getRoutes() : List<Route> {
         return routesRepository.getRoutes()
     }

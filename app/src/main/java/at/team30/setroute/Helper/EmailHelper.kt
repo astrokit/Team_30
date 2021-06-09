@@ -25,20 +25,11 @@ class EmailHelper(
     }
     override suspend fun sendEmail(text: String, receiver: String, subject: String): IEmailHelper.EmailResult {
         // https://gist.github.com/BlackthornYugen/1b3e1ff4426294e7054c9a7190e8f2cd
-
-
-
-
-
-
         val props = Properties()
-
         props.setProperty("mail.smtp.host", smtpHost)
         props.setProperty("mail.smtp.port", smtpPort.toString())
         props.setProperty("mail.smtp.auth", authenticate.toString())
         props.setProperty("mail.smtp.starttls.enable", enableStartTtls.toString())
-
-
 
         val session = Session.getDefaultInstance(props, object : javax.mail.Authenticator() {
             override fun getPasswordAuthentication(): PasswordAuthentication {
