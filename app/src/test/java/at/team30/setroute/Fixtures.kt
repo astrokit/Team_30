@@ -15,6 +15,12 @@ class Fixtures {
             Route(3, "Test3", "Test_DE_3", "Тест_3", Route.RouteType.COFFEE_LOVERS, 1, 1.3, "Description", "Beschreibung", "Описание"),
         )
 
+        fun routes_sorting() : List<Route> = listOf(
+            Route(1, "Test1", "Test_DE_1", "Тест_1", Route.RouteType.COFFEE_LOVERS, 20, 1.9, "Description", "Beschreibung", "Описание"),
+            Route(2, "Test2", "Test_DE_2", "Тест_2", Route.RouteType.COFFEE_LOVERS, 30, 0.5, "Description", "Beschreibung", "Описание"),
+            Route(3, "Test3", "Test_DE_3", "Тест_3", Route.RouteType.COFFEE_LOVERS, 10, 1.3, "Description", "Beschreibung", "Описание"),
+        )
+
         fun routes_navigation_test() : List<Route> = listOf(
            Route(1, "0wp", "0wp", "0wp", Route.RouteType.COFFEE_LOVERS, 1, 1.1, "Description", "Beschreibung", "Описание",
                  listOf(
