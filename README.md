@@ -28,7 +28,7 @@ Among its main features, we should implement:
 
 26 May 2021   - Sprint 4\
 02 June 2021   - Sprint 4\
-09 June 2021   - Sprint 4 (2 Release, 23:59)
+10 June 2021   - Sprint 4 (2 Release, 23:59)
   
 Link to Discord: https://discord.com/invite/sW262YSJkr  
 
@@ -79,3 +79,21 @@ Link to Discord: https://discord.com/invite/sW262YSJkr
 | SR-027      |         Improve Test Framework        |
 | SR-018      | App Settings functionalities: Language (DE/EN/RUS) |
 | SR-019      | App Settings functionalities: Dark mode (on/off) |
+| SR-012      | Start navigation |
+| SR-029      | Small bug fixes from the first Release |
+| SR-030      | Create Menu-Button in the top right corner |
+| SR-017      | App Settings functionalities: Distance (km/miles) |
+| SR-021      | Sorting routes |
+| SR-032      | Code refactoring and bug fixing |
+| SR-031      | Icon for route based on interest |
+| SR-034      | Filters for route selection |
+| SR-035      | App Settings: Feedback |
+| SR-036      | Route marked as Walked |
+| SR-037      | Code refactoring and bug fixing |
+| SR-040      | Open Route in Map Screen |
+| SR-039      | Zoom-In Map Picture |
+| SR-041      | Code refactoring and bug fixing |
+| SR-038      | Demo Data Enhancement |
+| SR-033      | Write additional tests |
+| SR-042      | Write additional tests |
+| SR-043      | Code refactoring and bug fixing |
