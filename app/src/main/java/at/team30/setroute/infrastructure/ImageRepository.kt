@@ -18,7 +18,7 @@ class ImageRepository @Inject constructor( private val routesRepository : IRoute
     private val apiKey = BuildConfig.MAPS_API_KEY
 
     override suspend fun getImage(route_id : Int): Bitmap? {
-        var image = map.get(route_id)
+        var image = map[route_id]
         val route = routesRepository.getRoutesById(route_id)
         if(route != null && image == null) {
             var url = "https://maps.googleapis.com/maps/api/staticmap?size=600x400&key=$apiKey&style=feature:all%7Cvisibility=off"
@@ -30,7 +30,7 @@ class ImageRepository @Inject constructor( private val routesRepository : IRoute
             }
 
             val request = Request.Builder().url(url).build()
-            var response = client.newCall(request).execute()
+            val response = client.newCall(request).execute()
 
             if (!response.isSuccessful) {
                 throw IOException("Unexpected code $response")
