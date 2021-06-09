@@ -31,8 +31,9 @@ class RoutesRepositoryTest {
         assertEquals(3.3, sut.getRoutes().elementAt(1).length, 0.01)
         assertEquals(7.6, sut.getRoutes().elementAt(2).length, 0.01)
         assertEquals(0.7, sut.getRoutes().elementAt(3).length, 0.01)
-        assertEquals(0.7, sut.getRoutes().elementAt(4).length, 0.01)
-        assertEquals(15.2, sut.getRoutes().elementAt(5).length, 0.01)
-        assertEquals(2.0, sut.getRoutes().elementAt(6).length, 0.01)
+        assertEquals(7.6, sut.getRoutes().elementAt(4).length, 0.01)
+        assertEquals(2.0, sut.getRoutes().elementAt(5).length, 0.01)
+        assertEquals(0.6, sut.getRoutes().elementAt(6).length, 0.01)
+        assertEquals(3.2, sut.getRoutes().elementAt(7).length, 0.01)
     }
 }
