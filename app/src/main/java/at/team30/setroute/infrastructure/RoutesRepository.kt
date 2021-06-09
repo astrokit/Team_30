@@ -1,7 +1,5 @@
 package at.team30.setroute.infrastructure
 
-import android.widget.Switch
-import at.team30.setroute.R
 import at.team30.setroute.models.Route
 import com.google.android.gms.maps.model.LatLng
 

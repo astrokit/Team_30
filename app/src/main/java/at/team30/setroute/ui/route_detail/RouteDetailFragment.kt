@@ -41,7 +41,7 @@ class RouteDetailFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_route_detail, container, false)
     }
 
-    fun loadImage(view : ImageView, image : Bitmap) {
+    private fun loadImage(view : ImageView, image : Bitmap) {
         view.setImageBitmap(image)
     }
 
@@ -60,8 +60,8 @@ class RouteDetailFragment : Fragment() {
 
         // shared Preference
         val sharedPreference = activity?.getSharedPreferences(SettingsFragment.SHARED_PREF_KEY, Context.MODE_PRIVATE)
-        var milesEnabled = sharedPreference?.getBoolean(SettingsFragment.MILES_PREF_KEY, false) ?: false
-        var distanceUnit = if(milesEnabled) getString(R.string.unit_miles) else getString(R.string.unit_km)
+        val milesEnabled = sharedPreference?.getBoolean(SettingsFragment.MILES_PREF_KEY, false) ?: false
+        val distanceUnit = if(milesEnabled) getString(R.string.unit_miles) else getString(R.string.unit_km)
         val length = route?.getLength(milesEnabled)
 
         name.text = route?.getLocalizedName(locale.language)
