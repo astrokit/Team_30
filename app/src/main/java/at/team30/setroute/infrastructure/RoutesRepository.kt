@@ -65,9 +65,15 @@ class RoutesRepository : IRoutesRepository {
             "Когда Вы доберетесь до верха, Вам откроеться прекарсный вид на Город." +
             "После чего у Вас будет возможность посетить захватывающие дух исторические места."
 
-    val description_dog_walk : String = "A dog walk through Graz."
-    val description_dog_walk_de : String = "Ein Spaziergang mit dem Hund durch Graz."
-    val description_dog_walk_ru : String = "Прогулка по Грацу с собакой."
+    val description_dog_walk : String = "A dog walk through Graz. The route contains 4 Parks, Where you can walk " +
+            "with your dog, and take a deep breath of fresh air. All the parks have beautiful lawns, so your" +
+            "dog will have fun."
+    val description_dog_walk_de : String = "Ein spaziergang mit dem Hund durch Graz. Die Route beinhaltet 4 Parks, " +
+            "wo Sie mit Ihrem Hund spazieren gehen können und die frische Luft genießen können. Alle Parks haben" +
+            "schöne Rasen, sodass Ihr Hund viel Spaß haben wird."
+    val description_dog_walk_ru : String = "Прогулка с собакой по Грацу. Маршрут проходит через 4 парка, " +
+            "где Вы можете пройтись со своей собакой и подышать свежим воздухом." +
+            " В каждом из парков есть прекрасные полянки, которым обрадуется ваш питомец."
 
     val description_alcoholics : String = "An alcohol tour through best pubs i Graz."
     val description_alcoholics_de : String = "Ein Spaziergang für Alkohol-Enthusiasten."
@@ -116,22 +122,21 @@ class RoutesRepository : IRoutesRepository {
                         LatLng(47.0744342848516, 15.437047017456983), //Chinese Pavilion
                         LatLng(47.076018604665585, 15.437211390779604),//Glockenturm
                         LatLng(47.07642848990562, 15.43760142353206))), //kasematten
-        Route(5, "Sights2", "Sehenswürdigkeiten", "Достопримечательности",
-            Route.RouteType.SIGHTSEEING_ADDICTED, 12, 0.7,
-            description_sightseeing, description_sightseeing_de, description_sightseeing_ru),
-        Route(6, "Sights3", "Sehenswürdigkeiten", "Достопримечательности",
-            Route.RouteType.SIGHTSEEING_ADDICTED, 40, 15.2,
-            description_sightseeing, description_sightseeing_de, description_sightseeing_ru),
-        Route(7, "Dog walk", "Hunde-Runde", "Прогулка с собакой",
+        Route(5, "Dog walk", "Hunde-Runde", "Прогулка с собакой",
             Route.RouteType.DOG_WALK, 30, 2.0,
-            description_dog_walk, description_dog_walk_de, description_dog_walk_ru),
-        Route(8, "Alcoholics", "Beisl-Tour", "Алкотур",
+            description_dog_walk, description_dog_walk_de, description_dog_walk_ru,
+                listOf(
+                        LatLng(47.072484081116535, 15.39473288008517), //Shlosspark Eggenberg
+                        LatLng(47.06154982999469, 15.4348640486123), //Augarten
+                        LatLng(47.07460820628103, 15.44435814485022), //Stadtpark
+                        LatLng(47.081945418598984, 15.457179665111903))), //Botanischer Garten
+        Route(6, "Alcoholics", "Beisl-Tour", "Алкотур",
             Route.RouteType.ALCOHOLICS, 60, 3.0,
             description_alcoholics, description_alcoholics_de, description_alcoholics_ru),
-        Route(9, "Romantic walk", "Romantischer Spaziergang", "Романтическая прогулка",
+        Route(7, "Romantic walk", "Romantischer Spaziergang", "Романтическая прогулка",
             Route.RouteType.ROMANTIC_WALK, 35, 1.5,
             description_romantic_walk, description_romantic_walk_de, description_romantic_walk_ru),
-        Route(10, "Sport freaks", "Sport Freak", "Спортсмен",
+        Route(8, "Sport freaks", "Sport Freak", "Спортсмен",
             Route.RouteType.SPORT_FREAKS, 42, 1.5,
             description_sport_freaks, description_sport_freaks_de, description_sport_freaks_ru)
     )
