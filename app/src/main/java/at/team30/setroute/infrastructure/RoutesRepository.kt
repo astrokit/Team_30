@@ -75,9 +75,13 @@ class RoutesRepository : IRoutesRepository {
             "где Вы можете пройтись со своей собакой и подышать свежим воздухом." +
             " В каждом из парков есть прекрасные полянки, которым обрадуется ваш питомец."
 
-    val description_alcoholics : String = "An alcohol tour through best pubs i Graz."
-    val description_alcoholics_de : String = "Ein Spaziergang für Alkohol-Enthusiasten."
-    val description_alcoholics_ru : String = "Избранные пивнушки Граца."
+    val description_alcoholics : String = "An alcohol tour through best pubs in Graz. You want a cold beer after a long workday?" +
+            "Maybe you want a refreshing cocktail on a breezy summer evening? Then this route is made for you!"
+    val description_alcoholics_de : String = "Eine alkoholische Tour durch die besten Pubs von Graz. " +
+            "Wenn du ein kaltes Bier nach einen langen Arbeitstag haben willst oder einen erfrischenden Cocktail an einem lauen Sommerabend, " +
+            "dann ist dieser Spaziergang wie gemacht für dich!"
+    val description_alcoholics_ru : String = "Алкотур по лучшим пабам и барам Граца. Хотите бокальчик пива после долгого рабочего дня? " +
+            "Не откажетесь от освежающего коктейля в знойный летний вечер? Этот маршрут для Вас!"
 
     val description_romantic_walk : String = "Romantic walk through Graz."
     val description_romantic_walk_de : String = "Ein romantischer Spaziergang."
@@ -123,7 +127,7 @@ class RoutesRepository : IRoutesRepository {
                         LatLng(47.076018604665585, 15.437211390779604),//Glockenturm
                         LatLng(47.07642848990562, 15.43760142353206))), //kasematten
         Route(5, "Dog walk", "Hunde-Runde", "Прогулка с собакой",
-            Route.RouteType.DOG_WALK, 30, 2.0,
+            Route.RouteType.DOG_WALK, 100, 7.6,
             description_dog_walk, description_dog_walk_de, description_dog_walk_ru,
                 listOf(
                         LatLng(47.072484081116535, 15.39473288008517), //Shlosspark Eggenberg
@@ -131,11 +135,17 @@ class RoutesRepository : IRoutesRepository {
                         LatLng(47.07460820628103, 15.44435814485022), //Stadtpark
                         LatLng(47.081945418598984, 15.457179665111903))), //Botanischer Garten
         Route(6, "Alcoholics", "Beisl-Tour", "Алкотур",
-            Route.RouteType.ALCOHOLICS, 60, 3.0,
-            description_alcoholics, description_alcoholics_de, description_alcoholics_ru),
+            Route.RouteType.ALCOHOLICS, 25, 2.0,
+            description_alcoholics, description_alcoholics_de, description_alcoholics_ru,
+                listOf(
+                        LatLng(47.064505304161735, 15.442436914278442), // O`Sullivans
+                        LatLng(47.07231044567942, 15.444157168276714), // Promenade
+                        LatLng(47.07224316101231, 15.447875641468617), // Cohi bar
+                        LatLng(47.06969431057964, 15.450959340521232))), //Bar28
         Route(7, "Romantic walk", "Romantischer Spaziergang", "Романтическая прогулка",
             Route.RouteType.ROMANTIC_WALK, 35, 1.5,
             description_romantic_walk, description_romantic_walk_de, description_romantic_walk_ru),
+
         Route(8, "Sport freaks", "Sport Freak", "Спортсмен",
             Route.RouteType.SPORT_FREAKS, 42, 1.5,
             description_sport_freaks, description_sport_freaks_de, description_sport_freaks_ru)
