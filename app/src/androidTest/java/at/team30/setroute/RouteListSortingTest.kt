@@ -1,7 +1,6 @@
 package at.team30.setroute
 
 import android.Manifest
-import org.hamcrest.Matchers.anything
 import androidx.test.espresso.Espresso.*
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -15,6 +14,7 @@ import at.team30.setroute.ui.MainActivity
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.android.testing.UninstallModules
+import org.hamcrest.Matchers.anything
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
