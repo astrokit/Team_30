@@ -1,8 +1,9 @@
 package at.team30.setroute
 
 import android.Manifest
-import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu
+import android.content.Context
+import android.content.SharedPreferences
+import androidx.test.espresso.Espresso.*
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.pressBack
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -18,10 +19,12 @@ import at.team30.setroute.ui.settings.SettingsFragment
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.android.testing.UninstallModules
+import org.hamcrest.Matchers
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import javax.inject.Inject
+
 
 @UninstallModules(DependencyInjection::class)
 @HiltAndroidTest
@@ -42,6 +45,12 @@ class MainActivityTest {
     @Before
     fun init() {
         hiltRule.inject()
+
+        val context = InstrumentationRegistry.getInstrumentation().targetContext;
+        val prefs: SharedPreferences = context.getSharedPreferences(SettingsFragment.SHARED_PREF_KEY, Context.MODE_PRIVATE)
+        val editor = prefs.edit()
+        editor.clear()
+        editor.commit()
     }
 
     @Test
@@ -158,5 +167,21 @@ class MainActivityTest {
 
         //Assert
         onView(withText(context.resources.getString(R.string.filter_options))).check(matches((isDisplayed())))
+    }
+
+    @Test
+    fun switch_to_miles_works() {
+        //Arrange
+        val context = InstrumentationRegistry.getInstrumentation().targetContext;
+
+        //Act
+        onView(withId(R.id.settingsFragment)).perform(click())
+        onView(withId(R.id.switch_units)).perform(click())
+        onView(withId(R.id.routesFragment)).perform(click())
+
+        //Assert
+        onData(Matchers.anything()).inAdapterView(withId(R.id.list)).atPosition(0)
+                .onChildView(withId(R.id.length))
+                .check(matches(withSubstring(context.resources.getString(R.string.unit_miles))))
     }
 }

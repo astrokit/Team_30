@@ -1,6 +1,5 @@
 package at.team30.setroute
 
-import android.graphics.Bitmap
 import at.team30.setroute.infrastructure.ImageRepository
 import at.team30.setroute.infrastructure.RoutesRepository
 import kotlinx.coroutines.runBlocking

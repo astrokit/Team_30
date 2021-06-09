@@ -2,7 +2,6 @@ package at.team30.setroute.Helper
 
 import android.content.res.Resources
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.PorterDuff
 import at.team30.setroute.R

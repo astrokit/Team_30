@@ -13,11 +13,9 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.NavHostFragment.findNavController
 import at.team30.setroute.Helper.RouteIconHelper
 import at.team30.setroute.R
 import at.team30.setroute.models.Route
-import at.team30.setroute.ui.routes.RouteListFragmentDirections
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -139,7 +137,7 @@ class MapsFragment : Fragment(), GoogleMap.OnMyLocationButtonClickListener, Goog
     }
 
     override fun onMarkerClick(marker: Marker) : Boolean {
-        var route = marker.tag as Route
+        val route = marker.tag as Route
         val locale = LocaleHelper.getLocale(requireContext())
 
         MaterialAlertDialogBuilder(requireContext())
