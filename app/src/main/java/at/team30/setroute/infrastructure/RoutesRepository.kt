@@ -83,9 +83,15 @@ class RoutesRepository : IRoutesRepository {
     val description_alcoholics_ru : String = "Алкотур по лучшим пабам и барам Граца. Хотите бокальчик пива после долгого рабочего дня? " +
             "Не откажетесь от освежающего коктейля в знойный летний вечер? Этот маршрут для Вас!"
 
-    val description_romantic_walk : String = "Romantic walk through Graz."
-    val description_romantic_walk_de : String = "Ein romantischer Spaziergang."
-    val description_romantic_walk_ru : String = "Романтическая прогулка по городу."
+    val description_romantic_walk : String = "Romantic walk through Graz with beautiful sightseeing and view over the City." +
+            "When reaching the top of Schlossberg you have awesome view over the city of Graz. You will be able to " +
+            "discover astonishing historical places on the top of Graz."
+    val description_romantic_walk_de : String = "Romantischer Spaziergang durch Graz mit einem wunderschönen Rundblick über die Stadt. " +
+            "Wenn Sie die Spitze des Schlossbergs erreicht haben, haben sie einen wunderschönen Ausblick über Graz. " +
+            "Sie werden erstaunliche historische Orte bestaunen können."
+    val description_romantic_walk_ru : String = "Романтическая прогулка по Грацу с красивыми местами и видами на город. " +
+            "Наверху Schloßberg вас ждёт прекрасный вид на Грац. " +
+            "Вы также сможете насладиться историческими местами у вершины Граца."
 
     val description_sport_freaks : String = "Intensive training."
     val description_sport_freaks_de : String = "Ein intensives Training."
@@ -143,11 +149,15 @@ class RoutesRepository : IRoutesRepository {
                         LatLng(47.07224316101231, 15.447875641468617), // Cohi bar
                         LatLng(47.06969431057964, 15.450959340521232))), //Bar28
         Route(7, "Romantic walk", "Romantischer Spaziergang", "Романтическая прогулка",
-            Route.RouteType.ROMANTIC_WALK, 35, 1.5,
-            description_romantic_walk, description_romantic_walk_de, description_romantic_walk_ru),
-
+            Route.RouteType.ROMANTIC_WALK, 11, 0.6,
+            description_romantic_walk, description_romantic_walk_de, description_romantic_walk_ru,
+                listOf(
+                        LatLng(47.07320439512898, 15.436876540124148), //Schlossbergrutsche
+                        LatLng(47.07357690718118, 15.437702609500215), //UhrTurm
+                        LatLng(47.0744342848516, 15.437047017456983), //Chinese Pavilion
+                        LatLng(47.076018604665585, 15.437211390779604))),//Glockenturm
         Route(8, "Sport freaks", "Sport Freak", "Спортсмен",
-            Route.RouteType.SPORT_FREAKS, 42, 1.5,
+            Route.RouteType.SPORT_FREAKS, 15, 1.5,
             description_sport_freaks, description_sport_freaks_de, description_sport_freaks_ru)
     )
 
