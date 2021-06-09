@@ -34,7 +34,7 @@ class FilteringTest {
     }
 
     @Test
-    fun `filter by Coffee Lovers`(){
+    fun `filter by existing route`(){
         // Arrange
         val sut = RouteListViewModel(mockRepository, settingRepository, filteringRepository)
         filteringRepository.storeFilteringOptions(FilteringOptions(listOf(3)))
@@ -44,5 +44,18 @@ class FilteringTest {
 
         // Assert
         assertEquals(1, result?.size)
+    }
+
+    @Test
+    fun `filter by non-existing route`(){
+        // Arrange
+        val sut = RouteListViewModel(mockRepository, settingRepository, filteringRepository)
+        filteringRepository.storeFilteringOptions(FilteringOptions(listOf(2)))
+
+        // Act
+        val result = sut.getRoutes().value
+
+        // Assert
+        assertEquals(0, result?.size)
     }
 }
