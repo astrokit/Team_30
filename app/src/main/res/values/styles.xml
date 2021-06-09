@@ -10,4 +10,5 @@
     <style name="ToggleButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="colorPrimary">?attr/colorPrimary</item>
     </style>
+
 </resources>
