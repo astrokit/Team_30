@@ -25,4 +25,13 @@ class EmailTest {
                 password = null
         )
     }
+
+    @Test
+    fun createEmailHelperWithoutAuthentication() {
+        EmailHelper(
+                authenticate = false,
+                userName = "Max Musterman",
+                password = null
+        )
+    }
 }
