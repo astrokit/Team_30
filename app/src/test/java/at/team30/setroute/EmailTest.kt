@@ -10,10 +10,19 @@ import java.lang.IllegalArgumentException
 class EmailTest {
 
     @Test(expected = IllegalArgumentException::class)
-    fun initIllegalArguments() {
+    fun initIllegalArgumentsNoUsername() {
         EmailHelper(
             authenticate = true,
             userName = null
+        )
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun initIllegalArgumentsNoPassword() {
+        EmailHelper(
+                authenticate = true,
+                userName = "Max Musterman",
+                password = null
         )
     }
 }
