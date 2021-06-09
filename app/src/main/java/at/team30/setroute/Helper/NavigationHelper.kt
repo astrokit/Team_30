@@ -14,21 +14,19 @@ class NavigationHelper {
             var destinationString = ""
             var waypointString = ""
 
-            if (route != null) {
-                if (route.positions != null && route.positions.isNotEmpty()) {
-                    val originCoordinates: LatLng = route.positions.first()
-                    originString = "origin=${originCoordinates.latitude},${originCoordinates.longitude}"
+            if (route.positions != null && route.positions.isNotEmpty()) {
+                val originCoordinates: LatLng = route.positions.first()
+                originString = "origin=${originCoordinates.latitude},${originCoordinates.longitude}"
 
-                    val destinationCoordinates: LatLng = route.positions.last()
-                    destinationString = "destination=${destinationCoordinates.latitude},${destinationCoordinates.longitude}"
+                val destinationCoordinates: LatLng = route.positions.last()
+                destinationString = "destination=${destinationCoordinates.latitude},${destinationCoordinates.longitude}"
 
-                    waypointString = "waypoints="
+                waypointString = "waypoints="
 
-                    route.positions.forEach {
-                        if (it == originCoordinates || it == destinationCoordinates) {}
-                        else {
-                            waypointString = waypointString + it.latitude + "," + it.longitude + "%7C"
-                        }
+                route.positions.forEach {
+                    if (it == originCoordinates || it == destinationCoordinates) {}
+                    else {
+                        waypointString = waypointString + it.latitude + "," + it.longitude + "%7C"
                     }
                 }
             }
