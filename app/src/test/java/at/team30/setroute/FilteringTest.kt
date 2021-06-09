@@ -82,4 +82,30 @@ class FilteringTest {
         // Assert
         assertEquals(0, result?.size)
     }
+
+    @Test
+    fun `length by duration`(){
+        // Arrange
+        val sut = RouteListViewModel(mockRepository, settingRepository, filteringRepository)
+        filteringRepository.storeFilteringOptions(FilteringOptions(minDistance = 1f, maxDistance = 2f))
+
+        // Act
+        val result = sut.getRoutes().value
+
+        // Assert
+        assertEquals(2, result?.size)
+    }
+
+    @Test
+    fun `length by duration too strict`(){
+        // Arrange
+        val sut = RouteListViewModel(mockRepository, settingRepository, filteringRepository)
+        filteringRepository.storeFilteringOptions(FilteringOptions(minDistance = 3f, maxDistance = 4f))
+
+        // Act
+        val result = sut.getRoutes().value
+
+        // Assert
+        assertEquals(0, result?.size)
+    }
 }
