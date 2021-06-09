@@ -93,9 +93,14 @@ class RoutesRepository : IRoutesRepository {
             "Наверху Schloßberg вас ждёт прекрасный вид на Грац. " +
             "Вы также сможете насладиться историческими местами у вершины Граца."
 
-    val description_sport_freaks : String = "Intensive training."
-    val description_sport_freaks_de : String = "Ein intensives Training."
-    val description_sport_freaks_ru : String = "Интенсивный тренинг."
+    val description_sport_freaks : String = "Intensive training. If you want to burn some of your energy, then this route " +
+            "will help you. This route is not a simple run but it also guides you through beautiful places like Murinsel."
+    val description_sport_freaks_de : String = "Wenn Sie etwas von Ihrer Energie verbrennen wollen, dann wird Ihnen dieser Lauf durch Graz sicherlich helfen. " +
+            "Diese Strecke ist nicht nur ein einfacher Lauf," +
+            " sondern er führt Sie auch an einigen schönen Orten wie z.B. der Murinsel vorbei."
+    val description_sport_freaks_ru : String = "Интенсивная тренировка. " +
+            "Не знаете куда подевать свою энергию - этот маршрут поможет вам с этим. " +
+            "Более того, это не просто пробежка, этот маршрут проходит через чудесные места по типу Murinsel."
 
     private val routes : List<Route> = listOf(
         Route(1,
@@ -157,8 +162,13 @@ class RoutesRepository : IRoutesRepository {
                         LatLng(47.0744342848516, 15.437047017456983), //Chinese Pavilion
                         LatLng(47.076018604665585, 15.437211390779604))),//Glockenturm
         Route(8, "Sport freaks", "Sport Freak", "Спортсмен",
-            Route.RouteType.SPORT_FREAKS, 15, 1.5,
-            description_sport_freaks, description_sport_freaks_de, description_sport_freaks_ru)
+            Route.RouteType.SPORT_FREAKS, 40, 3.2,
+            description_sport_freaks, description_sport_freaks_de, description_sport_freaks_ru,
+                listOf(
+                        LatLng(47.06163534422701, 15.435210898991494), //Augarten
+                        LatLng(47.07316326210481, 15.434501942502521), //Murinsel
+                        LatLng(47.07848503668133, 15.439691225156626), //Landessportzentrum Steiermark
+                        LatLng(47.076250942943176, 15.443805997555705)))// Platz der Versöhnung
     )
 
 
