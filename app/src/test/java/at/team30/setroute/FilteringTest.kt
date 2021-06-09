@@ -58,4 +58,17 @@ class FilteringTest {
         // Assert
         assertEquals(0, result?.size)
     }
+
+    @Test
+    fun `filter by duration`(){
+        // Arrange
+        val sut = RouteListViewModel(mockRepository, settingRepository, filteringRepository)
+        filteringRepository.storeFilteringOptions(FilteringOptions(minDuration = 10f, maxDuration = 20f))
+
+        // Act
+        val result = sut.getRoutes().value
+
+        // Assert
+        assertEquals(2, result?.size)
+    }
 }
