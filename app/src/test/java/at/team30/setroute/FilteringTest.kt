@@ -3,12 +3,10 @@ package at.team30.setroute
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import at.team30.setroute.infrastructure.*
 import at.team30.setroute.models.FilteringOptions
-import at.team30.setroute.models.SortingOptions
 import at.team30.setroute.ui.routes.RouteListViewModel
 import io.mockk.every
 import io.mockk.mockk
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -70,5 +68,18 @@ class FilteringTest {
 
         // Assert
         assertEquals(2, result?.size)
+    }
+
+    @Test
+    fun `filter by duration too strict`(){
+        // Arrange
+        val sut = RouteListViewModel(mockRepository, settingRepository, filteringRepository)
+        filteringRepository.storeFilteringOptions(FilteringOptions(minDuration = 12f, maxDuration = 15f))
+
+        // Act
+        val result = sut.getRoutes().value
+
+        // Assert
+        assertEquals(0, result?.size)
     }
 }
